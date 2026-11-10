@@ -31,6 +31,20 @@ h4 span{color:#888;font-weight:400;margin-left:6px}
 .iframely-embed{margin:0 auto;width:100%}
 .iframely-responsive{position:relative;height:0;overflow:hidden}
 .iframely-responsive>*{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+
+/* Shorts shown 3 columns x 3 rows, the rest scroll sideways */
+.grid.hscroll,.split .grid.hscroll,.split .grid.tall.hscroll{
+  grid-template-columns:none;
+  grid-template-rows:repeat(3,auto);
+  grid-auto-flow:column;
+  grid-auto-columns:calc((100% - 28px)/3);
+  overflow-x:auto;
+  padding-bottom:12px;
+  scroll-snap-type:x proximity;
+}
+.hscroll .card{scroll-snap-align:start}
+.hscroll .card h5{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
 @media (max-width:900px){.split{grid-template-columns:1fr}}
 </style>
 </head>
@@ -80,6 +94,14 @@ h4 span{color:#888;font-weight:400;margin-left:6px}
    Leave name:'' if the section only needs one group with no heading.
    The menu link at the top is created automatically.
 
+   SIDEWAYS-SCROLLING SHORTS (3 columns x 3 rows visible, rest hidden)
+   Add scrollShorts:true to a section, next to split:
+        { name:'Wildlife', split:true, scrollShorts:true, groups:[ ...
+   Remove it to go back to a normal grid of shorts.
+   To change the rows, edit repeat(3,auto) in the CSS (hscroll block).
+   To change the columns, edit calc((100% - 28px)/3) in the same block
+   (for 4 columns use calc((100% - 42px)/4)).
+
    ADD A REEL
    Add a line to a group in the REELS list:
         ['i',  'INSTAGRAM_ID', 'Title'],      Instagram reel
@@ -121,8 +143,8 @@ const YOUTUBE = [
     ] }
 ]},
 
-/* ---------- WILDLIFE (long form and shorts side by side) ---------- */
-{ name:'Wildlife', split:true, groups:[
+/* ---------- WILDLIFE (long form and shorts side by side, shorts scroll sideways) ---------- */
+{ name:'Wildlife', split:true, scrollShorts:true, groups:[
   { name:'',
     long:[
       ['VkT_jTj2NG8','10 rarest critically endangered animals in the world today'],
@@ -485,24 +507,25 @@ function reelCard(t,id,title){
   return `<article class="card">${media}<h5>${esc(title)}</h5><small><a href="${link}" target="_blank" rel="noopener">Open on ${PLAT[t]}</a></small></article>`;
 }
 
-function ytGroup(g, split){
+function ytGroup(g, split, scroll){
   const L = g.long||[], S = g.shorts||[];
   const head = g.name ? `<h4>${esc(g.name)}<span>${L.length+S.length}</span></h4>` : '';
   const longHtml = L.map(i=>ytCard(i[0],i[1],false)).join('');
   const shortHtml = S.map(i=>ytCard(i[0],i[1],true)).join('');
+  const shortCls = 'grid tall' + (scroll ? ' hscroll' : '');
   if(split && L.length && S.length){
     return head + `<div class="split">
       <div><div class="colhead">Long form</div><div class="grid">${longHtml}</div></div>
-      <div><div class="colhead">Shorts</div><div class="grid tall">${shortHtml}</div></div></div>`;
+      <div><div class="colhead">Shorts${scroll?' (scroll sideways for more)':''}</div><div class="${shortCls}">${shortHtml}</div></div></div>`;
   }
   return head
     + (L.length ? `<div class="grid">${longHtml}</div>` : '')
-    + (S.length ? `<div class="colhead" style="margin-top:14px">Shorts</div><div class="grid tall">${shortHtml}</div>` : '');
+    + (S.length ? `<div class="colhead" style="margin-top:14px">Shorts</div><div class="${shortCls}">${shortHtml}</div>` : '');
 }
 
 let html = '<h2 id="youtube">YouTube</h2>';
 YOUTUBE.forEach(sec=>{
-  html += `<section id="${slug(sec.name)}"><h3>${esc(sec.name)}</h3>${sec.groups.map(g=>ytGroup(g,sec.split)).join('')}</section>`;
+  html += `<section id="${slug(sec.name)}"><h3>${esc(sec.name)}</h3>${sec.groups.map(g=>ytGroup(g,sec.split,sec.scrollShorts)).join('')}</section>`;
 });
 html += '<h2 id="reels">Reels</h2>';
 REELS.forEach(g=>{
