@@ -501,7 +501,8 @@ const YOUTUBE = [
     ['ZOJq0ClFKPQ','SEO King app interface'],
     ['wpNMhRhypqc','Welcome to XFusion'],
     ['qMX0uhMdi2o','Untitled video'],
-    ['1JnJX3BsUsM','Untitled video']
+    ['1JnJX3BsUsM','Untitled video'],
+    ['ggftIClroLI','YouTube video (add title)']
   ]}
 ]}
 
@@ -514,10 +515,6 @@ const REELS = [
   ['i','DIk8HzBBKzD','Badilico reel'],['i','DIao-a9ps7g','Badilico reel'],['i','DILL4yBtllD','Badilico reel'],
   ['i','DGDAns8M4Z2','Badilico reel'],['i','DGhnRdRCKod','Badilico reel'],['i','DHAhN1NMnqb','Badilico reel'],
   ['i','DHc1osuvtrU','Badilico reel'],['i','DH2mAVZCLBi','Badilico reel'],['i','DHptd_WybNU','Badilico reel']]},
-{ name:'Instagram: mogo.kenya', items:[
-  ['i','DfjN2XBOfLc','Mogo Kenya reel'],['i','DewQDRkhzsk','Mogo Kenya reel'],['i','DegUFUQOGda','Mogo Kenya reel'],
-  ['i','DdqnvJmIs3G','Mogo Kenya reel'],['i','Dd3I-2vORdX','Mogo Kenya reel'],['i','DdbeXUdioJO','Mogo Kenya reel'],
-  ['i','DdIvVOQOJ6a','Mogo Kenya reel'],['i','DbAYWwsCicG','Mogo Kenya reel']]},
 { name:'Instagram: breesbeeshoney', items:[
   ['i','C9B7qZIiXM1','Bree\'s Bees Honey reel'],['i','C8wA-pFJGJb','Bree\'s Bees Honey reel'],['i','C8bao4JP8ME','Bree\'s Bees Honey reel'],
   ['i','C8L92WTvtQ4','Bree\'s Bees Honey reel'],['i','C8JZDbnhiCu','Bree\'s Bees Honey reel'],['i','C7lV0E6P7eI','Bree\'s Bees Honey reel'],
@@ -565,7 +562,82 @@ const REELS = [
   ['fw','1032114715544279','Isinya Feeds: high quality, always'],
   ['fw','1354547539102900','Isinya Feeds: quality poultry feed'],
   ['fw','1348482846434094','Isinya Feeds: better feed, better birds'],
-  ['fw','1178722167440143','Ngong Veg']]}
+  ['fw','1178722167440143','Ngong Veg']]},
+{ name:'Facebook: new saves (add titles)', items:[
+  ['fw','241031947799854','Facebook reel (add title)'],
+  ['fw','828748017739467','Facebook reel (add title)'],
+  ['fw','1193682474830236','Facebook reel (add title)']]}
+];
+
+/* ---------- TAGS ----------
+   A tag puts an item on a menu page as well as on the page it already
+   lives on. Pages: 'paid-media', 'events', 'graphic-design'.
+   Add a tag by id here, or add a tags:[...] list to an item in EXTRA.
+   An item can have several tags: ['events','paid-media'] */
+const TAGS = {
+  '2253492262085027':['events'],   // Rhino Cup 2026 highlights
+  '913379405100334':['events'],    // Rhino Cup 2026 day two
+  '1553539216405089':['events'],   // Rhino Cup 2026 day one
+  '1762745684447464':['events'],   // Rhino Cup 2025 highlights
+  '1833250570566048':['events'],   // Rhino Cup 2025 day two
+  '1667597350585619':['events'],   // Rhino Cup 2025 day one
+  '792474540627698':['events'],    // Fair Trade Schools Interaction Day 2026
+  '8dPqhxxilyA':['events'],        // Regional Fair Trade Schools Interaction Day 2026
+  '1882856136412431':['events'],   // Evening of recognition
+  'Y6mTl4xxKao':['events']         // Fair Africa Fortnight campaign
+};
+
+/* Menu pages made from tags (order here = order in the menu) */
+const TAG_PAGES = [
+  {tag:'paid-media', label:'Paid media'},
+  {tag:'events', label:'Events'},
+  {tag:'graphic-design', label:'Graphic design'}
+];
+
+/* Items added from the portfolio.csv file.
+   t: 'yt' YouTube long form, 'ys' YouTube short, 'i' Instagram reel,
+      'p' Instagram post, 'f' / 'fw' Facebook reel, 'lk' Instagram link tile */
+const EXTRA = [
+  /* Paid media: mogo.kenya */
+  {t:'i', id:'DfjN2XBOfLc', title:'Mogo Kenya reel', tags:['paid-media']},
+  {t:'i', id:'DewQDRkhzsk', title:'Mogo Kenya reel', tags:['paid-media']},
+  {t:'i', id:'DegUFUQOGda', title:'Mogo Kenya reel', tags:['paid-media']},
+  {t:'i', id:'DdqnvJmIs3G', title:'Mogo Kenya reel', tags:['paid-media']},
+  {t:'i', id:'Dd3I-2vORdX', title:'Mogo Kenya reel', tags:['paid-media']},
+  {t:'i', id:'DdbeXUdioJO', title:'Mogo Kenya reel', tags:['paid-media']},
+  {t:'i', id:'DdIvVOQOJ6a', title:'Mogo Kenya reel', tags:['paid-media']},
+  {t:'i', id:'DbAYWwsCicG', title:'Mogo Kenya reel', tags:['paid-media']},
+  {t:'p', id:'Dfoe3WcOTEZ', title:'Mogo Kenya post', tags:['paid-media']},
+  {t:'p', id:'DfpG6VSuMz1', title:'Mogo Kenya post', tags:['paid-media']},
+
+  /* Events */
+  {t:'yt', id:'xw21zEpRKdg', title:'The Changamka Festival is BACK!', tags:['events']},
+  {t:'yt', id:'USKfBCVhYyk', title:'Changamka Festival 2021', tags:['events']},
+  {t:'yt', id:'PuKy5_UOXXI', title:'Changamka Shopping Festival 2022 - Mombasa Edition', tags:['events']},
+  {t:'yt', id:'G61m2nJwhaE', title:'WIM Conference and Expo', tags:['events']},
+
+  /* Graphic design: skygirlske posts (link tiles, not embeds) */
+  {t:'lk', id:'CqLpgiMqsjz', url:'https://www.instagram.com/p/CqLpgiMqsjz/', title:'skygirlske post', tags:['graphic-design']},
+  {t:'lk', id:'CrOeDWvukfs', url:'https://www.instagram.com/p/CrOeDWvukfs/', title:'skygirlske post', tags:['graphic-design']},
+  {t:'lk', id:'CsdW42_Aice', url:'https://www.instagram.com/p/CsdW42_Aice/', title:'skygirlske post', tags:['graphic-design']},
+  {t:'lk', id:'Cxk6ioKt_HT', url:'https://www.instagram.com/p/Cxk6ioKt_HT/', title:'skygirlske post', tags:['graphic-design']},
+  {t:'lk', id:'CyJrRD3tl_9', url:'https://www.instagram.com/p/CyJrRD3tl_9/', title:'skygirlske post', tags:['graphic-design']},
+  {t:'lk', id:'C1M5tqQMtQY', url:'https://www.instagram.com/p/C1M5tqQMtQY/', title:'skygirlske post', tags:['graphic-design']},
+  {t:'lk', id:'C1M_XD4svcj', url:'https://www.instagram.com/p/C1M_XD4svcj/', title:'skygirlske post', tags:['graphic-design']},
+  {t:'lk', id:'C1O7qWPg6Fu', url:'https://www.instagram.com/p/C1O7qWPg6Fu/', title:'skygirlske post', tags:['graphic-design']},
+  {t:'lk', id:'C1bl-EBtzJL', url:'https://www.instagram.com/p/C1bl-EBtzJL/', title:'skygirlske post', tags:['graphic-design']},
+  {t:'lk', id:'C1cIQEktKTr', url:'https://www.instagram.com/p/C1cIQEktKTr/', title:'skygirlske post', tags:['graphic-design']},
+  {t:'lk', id:'C1ZBs1tNAxG', url:'https://www.instagram.com/p/C1ZBs1tNAxG/', title:'skygirlske post', tags:['graphic-design']},
+  {t:'lk', id:'C1ZqYrKtnPf', url:'https://www.instagram.com/p/C1ZqYrKtnPf/', title:'skygirlske post', tags:['graphic-design']},
+  {t:'lk', id:'C1cjv_kte0V', url:'https://www.instagram.com/p/C1cjv_kte0V/', title:'skygirlske post', tags:['graphic-design']},
+  {t:'lk', id:'C1zLHhpt38o', url:'https://www.instagram.com/p/C1zLHhpt38o/', title:'skygirlske post', tags:['graphic-design']},
+  {t:'lk', id:'C2NTmFBtjtX', url:'https://www.instagram.com/p/C2NTmFBtjtX/', title:'skygirlske post', tags:['graphic-design']},
+  {t:'lk', id:'C3ktT_RquBu', url:'https://www.instagram.com/p/C3ktT_RquBu/', title:'skygirlske post', tags:['graphic-design']},
+  {t:'lk', id:'C3kt5mItm7i', url:'https://www.instagram.com/p/C3kt5mItm7i/', title:'skygirlske post', tags:['graphic-design']},
+  {t:'lk', id:'C3yiPlDKC5O', url:'https://www.instagram.com/p/C3yiPlDKC5O/', title:'skygirlske post', tags:['graphic-design']},
+  {t:'lk', id:'C3yi-XAKsxr', url:'https://www.instagram.com/p/C3yi-XAKsxr/', title:'skygirlske post', tags:['graphic-design']},
+  {t:'lk', id:'DFGIP1giO-F', url:'https://www.instagram.com/p/DFGIP1giO-F/', title:'skygirlske post', tags:['graphic-design']},
+  {t:'lk', id:'DFGGte7CUqM', url:'https://www.instagram.com/p/DFGGte7CUqM/', title:'skygirlske post', tags:['graphic-design']}
 ];
 
 /* Facebook reels that had no embed in the original file: shown as a link only.
@@ -575,14 +647,14 @@ const NOEMBED = new Set(['1559417445953017','1561761215709119','1449980163738582
 /* Reel shape overrides: 'NUMBER': ['padding-bottom %', 'max-width'] */
 const RATIO = {'1275134547769978':['125.0794%','80vh']};
 
-const IFKEY = 'b1378044235010cf6e17c24f8d281def';
+const IFKEY = '53fbb44ae2e447342adc08';
 
 /* =====================================================================
    RENDERING (you don't need to edit below this line)
    ===================================================================== */
 const esc = s => s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
-const PLAT = {i:'Instagram', f:'Facebook', fw:'Facebook'};
+const PLAT = {i:'Instagram', p:'Instagram', f:'Facebook', fw:'Facebook'};
 const BASE_TITLE = "Joseph's Portfolio";
 
 function ytCard(id,title,short){
@@ -593,10 +665,10 @@ function ytCard(id,title,short){
 }
 
 function reelCard(t,id,title){
-  const link = t==='i' ? 'https://www.instagram.com/reel/'+id+'/' : 'https://www.facebook.com/reel/'+id+'/';
+  const link = t==='i' ? 'https://www.instagram.com/reel/'+id+'/' : t==='p' ? 'https://www.instagram.com/p/'+id+'/' : 'https://www.facebook.com/reel/'+id+'/';
   let media = '';
-  if(t==='i'){
-    media = `<blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/${id}/" data-instgrm-version="14" style="background:#FFF;border:0;border-radius:3px;margin:1px;max-width:658px;min-width:326px;padding:0;width:calc(100% - 2px)"></blockquote>`;
+  if(t==='i'||t==='p'){
+    media = `<blockquote class="instagram-media" data-instgrm-permalink="${t==='p'?'https://www.instagram.com/p/':'https://www.instagram.com/reel/'}${id}/" data-instgrm-version="14" style="background:#FFF;border:0;border-radius:3px;margin:1px;max-width:658px;min-width:326px;padding:0;width:calc(100% - 2px)"></blockquote>`;
   } else if(!NOEMBED.has(id)){
     const r = RATIO[id] || (t==='f' ? ['177.6316%','56vh'] : ['56.3406%','']);
     const u = 'https://iframely.net/api/iframe?url='+encodeURIComponent('https://www.facebook.com/reel/'+id)+'&key='+IFKEY;
@@ -637,6 +709,10 @@ function renderHome(){
     const thumb = first ? `style="background-image:url(https://i.ytimg.com/vi/${first[0]}/hqdefault.jpg)"` : '';
     return `<a class="tile" href="#${slug(s.name)}"><div class="thumb" ${thumb}></div><div class="t"><b>${esc(s.name)}</b><span>${countSection(s)} videos</span></div></a>`;
   }).join('');
+  const tagTiles = TAG_PAGES.map(t=>{
+    const n = tagItems(t.tag).length;
+    return `<a class="tile" href="#${t.tag}"><div class="thumb empty"><i class="fa-solid fa-tag"></i></div><div class="t"><b>${esc(t.label)}</b><span>${n} items</span></div></a>`;
+  }).join('');
   const reelCount = REELS.reduce((n,g)=>n+g.items.length,0);
   const reelTile = `<a class="tile" href="#reels"><div class="thumb empty"><i class="fa-solid fa-film"></i></div><div class="t"><b>Reels</b><span>${reelCount} reels</span></div></a>`;
   return `<header class="intro">
@@ -645,7 +721,7 @@ function renderHome(){
       <a class="cta" href="mailto:josephomondi000@gmail.com?subject=Video%20project">Work with me</a>
     </header>
     <h3>Browse my work</h3>
-    <div class="tiles">${tiles}${reelTile}</div>
+    <div class="tiles">${tiles}${tagTiles}${reelTile}</div>
     <h3>My channels</h3>
     <ul class="channels">
       <li><a href="https://www.youtube.com/@earthorb000" target="_blank" rel="noopener"><i class="fa-brands fa-youtube" aria-hidden="true"></i> Earth Orb (YouTube)</a></li>
@@ -694,9 +770,38 @@ function processEmbeds(){
   try{ if(window.iframely && window.iframely.load) window.iframely.load(); }catch(e){}
 }
 
+/* ---------- TAG PAGES ---------- */
+function allItems(){
+  const out=[];
+  YOUTUBE.forEach(s=>s.groups.forEach(g=>{
+    (g.long||[]).forEach(i=>out.push({t:'yt',id:i[0],title:i[1]}));
+    (g.shorts||[]).forEach(i=>out.push({t:'ys',id:i[0],title:i[1]}));
+  }));
+  REELS.forEach(g=>g.items.forEach(i=>out.push({t:i[0],id:i[1],title:i[2]})));
+  EXTRA.forEach(i=>out.push(Object.assign({},i)));
+  return out.map(i=>Object.assign({},i,{tags:(i.tags||[]).concat(TAGS[i.id]||[])}));
+}
+function tagItems(tag){ return allItems().filter(i=>i.tags.includes(tag)); }
+
+function linkCard(i){
+  return `<article class="card"><a href="${i.url}" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;aspect-ratio:1/1;border:1px solid #444;border-radius:8px;background:#0a0a0a;color:#fff;font-size:2.4rem"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a><h5>${esc(i.title)}</h5><small><a href="${i.url}" target="_blank" rel="noopener">Open on Instagram</a></small></article>`;
+}
+
+function renderTag(tag){
+  const def = TAG_PAGES.find(p=>p.tag===tag);
+  const items = tagItems(tag);
+  const cards = items.map(i =>
+    (i.t==='yt'||i.t==='ys') ? ytCard(i.id,i.title,i.t==='ys')
+    : i.t==='lk' ? linkCard(i)
+    : reelCard(i.t,i.id,i.title)).join('');
+  const cls = items.every(i=>i.t==='lk') ? 'grid' : 'grid reels';
+  return `<h2>${esc(def.label)}</h2><p class="colhead">${items.length} items. An item can sit on more than one page.</p><div class="${cls}">${cards}</div>`;
+}
+
 /* ---------- MENU + ROUTER ---------- */
 const PAGES = [{id:'home', label:'Home'}]
   .concat(YOUTUBE.map(s=>({id:slug(s.name), label:s.name, sec:s})))
+  .concat(TAG_PAGES.map(t=>({id:t.tag, label:t.label, tag:t.tag})))
   .concat([{id:'reels', label:'Reels'}]);
 
 document.getElementById('nav').innerHTML =
@@ -711,6 +816,7 @@ function route(){
 
   if(page.id==='home') out.innerHTML = renderHome();
   else if(page.id==='reels') out.innerHTML = renderReels(sub);
+  else if(page.tag){ out.innerHTML = renderTag(page.tag); processEmbeds(); }
   else out.innerHTML = renderSection(page.sec, sub);
 
   document.querySelectorAll('#nav a').forEach(a=>a.classList.toggle('active', a.dataset.page===page.id));
