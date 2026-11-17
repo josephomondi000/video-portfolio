@@ -488,15 +488,39 @@ const YOUTUBE = [
   ]}
 ]},
 
-  /* ---------- Events ---------- */
+/* ---------- Paid media (Mogo Kenya) ---------- */
+{ name:'Paid media', split:false, groups:[
+  { name:'', items:[
+    ['i','DazYxQ6jYFG','Mogo Kenya reel'],
+    ['i','DegUFUQOGda','Mogo Kenya reel'],
+    ['i','DdqnvJmIs3G','Mogo Kenya reel'],
+    ['i','Dd3I-2vORdX','Mogo Kenya reel'],
+    ['i','DdbeXUdioJO','Mogo Kenya reel'],
+    ['i','DdIvVOQOJ6a','Mogo Kenya reel'],
+    ['i','DewQDRkhzsk','Mogo Kenya reel'],
+    ['i','DfjN2XBOfLc','Mogo Kenya reel'],
+    ['i','Dfoe3WcOTEZ','Mogo Kenya post'],
+    ['i','DfpG6VSuMz1','Mogo Kenya post']
+  ]}
+]},
+
+/* ---------- Events (YouTube, Facebook and Instagram in one list) ---------- */
 { name:'Events', split:false, groups:[
-  { name:'', long:[
-    ['ggftIClroLI','Kipepeo Agency World Music Day 2023 Highlights'],
-    ['G61m2nJwhaE','WIM Conference and Expo'],
-    ['DRTXxDMFy9k','A Summary Of YSK\'s 2020 Activities'],
-    ['lL8OrvNhjf0','Young Scientists Kenya video 2023'],
-    
-  ], shorts:[] }
+  { name:'', items:[
+    ['yt','ggftIClroLI','Kipepeo Agency World Music Day 2023 Highlights'],
+    ['yt','xw21zEpRKdg','The Changamka Festival is BACK!'],
+    ['yt','PuKy5_UOXXI','Changamka Shopping Festival 2022 - Mombasa Edition'],
+    ['yt','G61m2nJwhaE','WIM Conference and Expo'],
+    ['yt','DRTXxDMFy9k','A Summary Of YSK\'s 2020 Activities'],
+    ['yt','lL8OrvNhjf0','Young Scientists Kenya video 2023'],
+    ['fw','1193682474830236','Vivo Energy video'],
+    ['fw','241031947799854','Facebook reel (add title)'],
+    ['fw','1882856136412431','Evening of recognition'],
+    ['f','29275358458747851','Game moments: team spirit, one Kenya'],
+    ['fw','1990412128581621','Cricket Kenya reel'],
+    ['i','CqLpgiMqsjz','SKY Girls post'],
+    ['i','DbAYWwsCicG','Mogo Kenya reel']
+  ]}
 ]},
 
 /* ---------- OTHER ---------- */
@@ -525,10 +549,6 @@ const REELS = [
   ['i','DIk8HzBBKzD','Badilico reel'],['i','DIao-a9ps7g','Badilico reel'],['i','DILL4yBtllD','Badilico reel'],
   ['i','DGDAns8M4Z2','Badilico reel'],['i','DGhnRdRCKod','Badilico reel'],['i','DHAhN1NMnqb','Badilico reel'],
   ['i','DHc1osuvtrU','Badilico reel'],['i','DH2mAVZCLBi','Badilico reel'],['i','DHptd_WybNU','Badilico reel']]},
-{ name:'Instagram: mogo.kenya', items:[
-  ['i','DfjN2XBOfLc','Mogo Kenya reel'],['i','DewQDRkhzsk','Mogo Kenya reel'],['i','DegUFUQOGda','Mogo Kenya reel'],
-  ['i','DdqnvJmIs3G','Mogo Kenya reel'],['i','Dd3I-2vORdX','Mogo Kenya reel'],['i','DdbeXUdioJO','Mogo Kenya reel'],
-  ['i','DdIvVOQOJ6a','Mogo Kenya reel'],['i','DbAYWwsCicG','Mogo Kenya reel']]},
 { name:'Instagram: breesbeeshoney', items:[
   ['i','C9B7qZIiXM1','Bree\'s Bees Honey reel'],['i','C8wA-pFJGJb','Bree\'s Bees Honey reel'],['i','C8bao4JP8ME','Bree\'s Bees Honey reel'],
   ['i','C8L92WTvtQ4','Bree\'s Bees Honey reel'],['i','C8JZDbnhiCu','Bree\'s Bees Honey reel'],['i','C7lV0E6P7eI','Bree\'s Bees Honey reel'],
@@ -586,7 +606,7 @@ const NOEMBED = new Set(['1559417445953017','1561761215709119','1449980163738582
 /* Reel shape overrides: 'NUMBER': ['padding-bottom %', 'max-width'] */
 const RATIO = {'1275134547769978':['125.0794%','80vh']};
 
-const IFKEY = 'b1378044235010cf6e17c24f8d281def';
+const IFKEY = '53fbb44ae2e447342adc08';
 
 /* =====================================================================
    RENDERING (you don't need to edit below this line)
@@ -608,15 +628,21 @@ function reelCard(t,id,title){
   let media = '';
   if(t==='i'){
     media = `<blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/${id}/" data-instgrm-version="14" style="background:#FFF;border:0;border-radius:3px;margin:1px;max-width:658px;min-width:326px;padding:0;width:calc(100% - 2px)"></blockquote>`;
-  } else if(!NOEMBED.has(id)){
+  } else {
+    /* Facebook's own video player (same as the code copied from Facebook): no key or script needed */
     const r = RATIO[id] || (t==='f' ? ['177.6316%','56vh'] : ['56.3406%','']);
-    const u = 'https://iframely.net/api/iframe?url='+encodeURIComponent('https://www.facebook.com/reel/'+id)+'&key='+IFKEY;
-    media = `<div class="iframely-embed"${r[1]?` style="max-width:${r[1]}"`:''}><div class="iframely-responsive" style="padding-bottom:${r[0]}"><a href="https://www.facebook.com/reel/${id}" data-iframely-url="${u}"></a></div></div>`;
+    const src = 'https://www.facebook.com/plugins/video.php?href='+encodeURIComponent('https://www.facebook.com/reel/'+id+'/')+'&show_text=false&width=560&t=0';
+    media = `<div class="iframely-embed"${r[1]?` style="max-width:${r[1]}"`:''}><div class="iframely-responsive" style="padding-bottom:${r[0]}"><iframe src="${src}" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe></div></div>`;
   }
   return `<article class="card">${media}<h5>${esc(title)}</h5><small><a href="${link}" target="_blank" rel="noopener">Open on ${PLAT[t]}</a></small></article>`;
 }
 
 function ytGroup(g, split, scroll){
+  if(g.items){
+    const head = g.name ? `<h4>${esc(g.name)}<span>${g.items.length}</span></h4>` : '';
+    const cards = g.items.map(i => (i[0]==='yt'||i[0]==='ys') ? ytCard(i[1],i[2],i[0]==='ys') : reelCard(i[0],i[1],i[2])).join('');
+    return head + `<div class="grid reels">${cards}</div>`;
+  }
   const L = g.long||[], S = g.shorts||[];
   const head = g.name ? `<h4>${esc(g.name)}<span>${L.length+S.length}</span></h4>` : '';
   const longHtml = L.map(i=>ytCard(i[0],i[1],false)).join('');
@@ -633,7 +659,7 @@ function ytGroup(g, split, scroll){
 }
 
 /* ---------- PAGES ---------- */
-const countGroup = g => (g.long||[]).length + (g.shorts||[]).length;
+const countGroup = g => (g.long||[]).length + (g.shorts||[]).length + (g.items||[]).length;
 const countSection = s => s.groups.reduce((n,g)=>n+countGroup(g),0);
 
 function subnav(page, names, active){
@@ -644,7 +670,8 @@ function subnav(page, names, active){
 function renderHome(){
   const tiles = YOUTUBE.map(s=>{
     const g = s.groups[0];
-    const first = (g.long&&g.long[0]) || (g.shorts&&g.shorts[0]);
+    const yt1 = g.items && g.items.find(i=>i[0]==='yt'||i[0]==='ys');
+    const first = (g.long&&g.long[0]) || (g.shorts&&g.shorts[0]) || (yt1 && [yt1[1]]);
     const thumb = first ? `style="background-image:url(https://i.ytimg.com/vi/${first[0]}/hqdefault.jpg)"` : '';
     return `<a class="tile" href="#${slug(s.name)}"><div class="thumb" ${thumb}></div><div class="t"><b>${esc(s.name)}</b><span>${countSection(s)} videos</span></div></a>`;
   }).join('');
@@ -728,7 +755,7 @@ function route(){
   document.title = (page.id==='home' ? '' : page.label + ' | ') + BASE_TITLE;
   if(page.id!==lastPage) window.scrollTo(0,0);
   lastPage = page.id;
-  if(page.id==='reels') processEmbeds();
+  if(page.id==='reels' || (page.sec && page.sec.groups.some(g=>g.items))) processEmbeds();
 }
 window.addEventListener('hashchange', route);
 route();
